@@ -1,6 +1,7 @@
 const Users = require('../../models/user/usersSchema');
 const jwt = require('jsonwebtoken');
 const { users } = require("../../utils");
+const ImageService = require('../../services/imageService');
 const {
 registerDataValidator
 } = users;
@@ -57,8 +58,10 @@ try {
 }
 };
 
+const uploadUserPhoto = ImageService.upload('avatar');
 
-module.exports = { checkRegisterData, protect };
+
+module.exports = { checkRegisterData, protect, uploadUserPhoto };
 
 
 

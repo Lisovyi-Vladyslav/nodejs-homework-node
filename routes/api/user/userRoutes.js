@@ -1,7 +1,7 @@
 const express = require('express')
 const {users} = require("../../../controllers")
-const { register, login, logout, current } = users;
-const { checkRegisterData, protect } = require("../../../middlewares/user/userMiddleware");
+const { register, login, logout, current, updateAvatars } = users;
+const { checkRegisterData, protect, uploadUserPhoto } = require("../../../middlewares/user/userMiddleware");
 const router = express.Router()
 
 
@@ -23,6 +23,10 @@ router
   .route('/current')
   .get(current) 
 
+router
+  .route('/avatars')
+  .patch(uploadUserPhoto, updateAvatars)
+  
 module.exports = router
 
 
