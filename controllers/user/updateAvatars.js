@@ -14,8 +14,7 @@ const updateAvatars = async (req, res, next) => {
        
         res.status(200).json({
     user: updatedUser,
-        }
-        )
+        })
         
     } catch (err) {
         next(err);

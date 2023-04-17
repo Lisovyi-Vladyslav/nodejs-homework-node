@@ -9,7 +9,9 @@ const login = async (req, res, next) => {
     
         const user = await Users.findOne({ email }).select('+password');
 
-        if (!user) return res.status(401).json({ message: "Email or password is wrong"});
+        if (!user) return res.status(401).json({ message: "Email or password is wrong" });
+        
+        if (!user.verify) return res.status(401).json({ message: "User is not verify" });
         
         const passwordIsValid = await user.checkPassword(password, user.password);
 

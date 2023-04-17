@@ -1,6 +1,6 @@
 const express = require('express')
 const {users} = require("../../../controllers")
-const { register, login, logout, current, updateAvatars } = users;
+const { register, login, logout, current, updateAvatars, verificationRequest, repeatedVerify } = users;
 const { checkRegisterData, protect, uploadUserPhoto } = require("../../../middlewares/user/userMiddleware");
 const router = express.Router()
 
@@ -13,6 +13,14 @@ router
   .route('/login')
   .post(login)
 
+router
+  .route('/verify/:verificationToken')
+  .get(verificationRequest) 
+
+router
+  .route('/verify')
+  .post(repeatedVerify)
+  
 router.use(protect)
   
 router
